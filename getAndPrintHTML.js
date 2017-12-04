@@ -9,14 +9,19 @@ function getAndPrintHTML() {
 
   https.get(requestOptions, function(response) {
 
+    var arr = [];
     response.setEncoding('utf8');
 
     response.on('data', function(data) {
-      var arr = data.split('\n');
+      arr.push(data);
+    });
+
+    response.on('end', function() {
       for (i in arr) {
         console.log(arr[i]);
       }
     });
+
   });
 }
 
